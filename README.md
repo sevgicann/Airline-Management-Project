@@ -1,20 +1,26 @@
-Proje Özeti:
+# Airline Project
 
-Proje Adı: Airline Project
-Proje Tanımı: Havayolları ve onlara bağlı uçakların eklenebildiği, değiştirilebildiği ve listelenebildiği bir tasarım oluşturma.
+## Proje Tanımı
+Airline Project, havayolları ve onlara bağlı uçakların eklenebildiği, değiştirilebildiği ve listelenebildiği bir uygulama tasarımıdır. Proje, kullanıcı doğrulama ve yetkilendirme ile birlikte API işlevselliği sunar.
 
-Kullanılan Teknolojiler: Django, Visual Studio Code, JWT, Postman
+## Kullanılan Teknolojiler
+- **Django:** Web uygulaması geliştirme için kullanılan framework.
+- **Visual Studio Code:** Kodlama ve geliştirme ortamı.
+- **JWT (JSON Web Tokens):** Kullanıcı doğrulama ve yetkilendirme için.
+- **Postman:** API testleri için.
 
-Proje Fonksiyonları: Kullanıcı Doğrulama ve Yetkinlendirme: JWT Authentication
-API İşlevi: Uçakların ve havayollarının eklenebildiği, listelenebilindiği, değiştirilebildiği ve silindiği bir uygulama oluşturma.
+## Proje Fonksiyonları
+- **Kullanıcı Doğrulama ve Yetkilendirme:** JWT Authentication ile kullanıcı doğrulama ve yetkilendirme sağlanır.
+- **API İşlevi:** Uçakların ve havayollarının eklenebildiği, listelenebildiği, değiştirilebildiği ve silinebileceği bir API uygulaması oluşturulmuştur.
 
-Test Aşaması:
+## Test Aşaması
+- **Postman Testleri:** Proje gereksinimlerine uygun testler gerçekleştirilmiştir.
+- **Alınan Hatalar:** Access token’a erişimde hata alınmış, `TokenObtainPairView` sınıfı kullanılarak JWT token’lara erişim hatası düzeltilmiştir.
 
-Postman Testleri: Postman’da proje gereksinimlerine uygun testler gerçekleştirildi.
-Alınan Hatalar: Access token’a erişimde hata alındı. TokenObtainPairView class’ı kullanarak JWT token’lara erişim hatası düzeltildi. 
+## Sonuç
+Projede istenilen uçak ekleme, listeleme ve değiştirme işlemleri sorunsuz bir şekilde çalışmaktadır. Havayolları kısmı gereksinimlere uygun olarak eklenip, listelenip, değiştirilebilmektedir. Sisteme erişimi olan kullanıcılar ve kullanıcı grupları Authentication ve Authorization başlığı altında görüntülenebilmektedir. Panel içerisindeki arama işlevleri düzgün bir şekilde çalışmaktadır.
 
-Sonuç:
-Projede istenilen uçak ekleme, listeleme ve değiştirme kısımları sorunsuz olarak çalışmaktadır. 
-Havayolları kısmı gereksinimlere göre eklenip, listelenip, değiştirilebilmektedir. 
-Sisteme erişimi olan kullanıcılar ve kullanıcı grupları Authentication and Authorization başlığı altında görüntülenebilmektedir. 
-Panel içerisindeki search kısımları düzgün bir şekilde çalışmaktadır.
+## Kurulum ve Kullanım
+1. Projeyi klonlayın:
+   ```bash
+   git clone https://github.com/yourusername/your-repository-name.git
