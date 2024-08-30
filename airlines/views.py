@@ -9,6 +9,10 @@ from .models import Airline, Aircraft
 from .serializers import AirlineSerializer, AircraftSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth.models import User
+from django.http import JsonResponse
+from rest_framework.decorators import api_view
+from rest_framework.parsers import JSONParser
+
 
 # Token almak için kullanılan view
 class TestTokenView(TokenObtainPairView):
@@ -82,16 +86,43 @@ class AirlineRetrieveUpdateDestroyView(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, pk):
+    def patch(self, request, pk):
         try:
             airline = Airline.objects.get(pk=pk)
         except Airline.DoesNotExist:
             return Response({'detail': 'Not found.'}, status=status.HTTP_404_NOT_FOUND)
         
-        airline.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        serializer = AirlineSerializer(airline, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# APIView kullanarak Aircraft işlemleri yapıldı
+@api_view(['POST'])
+def delete_airline(request):
+    data = JSONParser().parse(request)
+    pk = data.get('pk')
+    
+    try:
+        airline = Airline.objects.get(pk=pk)
+        airline.delete()
+        return JsonResponse({'message': 'Airline deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+    except Airline.DoesNotExist:
+        return JsonResponse({'error': 'Airline not found'}, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['POST'])
+def delete_aircraft(request):
+    data = JSONParser().parse(request)
+    pk = data.get('pk')
+    
+    try:
+        aircraft = Aircraft.objects.get(pk=pk)
+        aircraft.delete()
+        return JsonResponse({'message': 'Aircraft deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+    except Aircraft.DoesNotExist:
+        return JsonResponse({'error': 'Aircraft not found'}, status=status.HTTP_404_NOT_FOUND)
+
+# APIView Kullanarak Aircraft işlemleri yapıldı
 class AircraftListCreateView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -131,11 +162,14 @@ class AircraftRetrieveUpdateDestroyView(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, pk):
+    def patch(self, request, pk):
         try:
             aircraft = Aircraft.objects.get(pk=pk)
         except Aircraft.DoesNotExist:
             return Response({'detail': 'Not found.'}, status=status.HTTP_404_NOT_FOUND)
         
-        aircraft.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        serializer = AircraftSerializer(aircraft, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
