@@ -20,7 +20,4 @@ Airline Project, havayolları ve onlara bağlı uçakların eklenebildiği, değ
 ## Sonuç
 Projede istenilen uçak ekleme, listeleme ve değiştirme işlemleri sorunsuz bir şekilde çalışmaktadır. Havayolları kısmı gereksinimlere uygun olarak eklenip, listelenip, değiştirilebilmektedir. Sisteme erişimi olan kullanıcılar ve kullanıcı grupları Authentication ve Authorization başlığı altında görüntülenebilmektedir. Panel içerisindeki arama işlevleri düzgün bir şekilde çalışmaktadır.
 
-## Kurulum ve Kullanım
-1. Projeyi klonlayın:
-   ```bash
-   git clone https://github.com/yourusername/your-repository-name.git
+
